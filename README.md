@@ -1,6 +1,6 @@
 # LSTAT2030 - Lab4: Hello package
 
-* To downlod this folder to your computer as `.zip` file: 
+* To download this folder to your computer as `.zip` file: 
 
 1. Click the green button `<code>` (above right).
 2. Click the `Download ZIP` button.
