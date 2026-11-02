@@ -2,8 +2,8 @@
 
 * To download this folder to your computer as `.zip` file: 
 
-1. Click the green button `<code>` (above right).
-2. Click the `Download ZIP` button.
+  1. Click the green button `<code>` (above right).
+  2. Click the `Download ZIP` button.
 
     After that, unzip and open the `.Rproj` in RStudio. This gives you the source version of the package with all the necessary files.
 
