@@ -4,7 +4,7 @@
 \alias{hello}
 \title{Hello World}
 \usage{
-hello(who, lang = "EN", LangData = Hello::language)
+hello(who, lang = "EN", LangData = language)
 }
 \arguments{
 \item{who}{a \code{character} vector of length 1 that specifies the name of the person to whom the message is addressed.}
@@ -22,7 +22,10 @@ a \code{character} vector with a personalized \emph{"hello"} message.
 \code{hello} says \emph{"hello"} in the user-specified language. The user is asked to give her/his name so that the hello message gets personalized.
 }
 \examples{
-hello("James")
-hello("Amelia", "Es")
+hello("Amelia")
+hello("Emmanuel", "fR")
+hello("Sami", "GE")
+hello("Sami", "GE", LangData = data.frame("ge", "Hallo"))
+hello(25) |> try()   # Error
 
 }

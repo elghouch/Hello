@@ -17,34 +17,33 @@
 #' a `character` vector with a personalized _"hello"_ message.
 #'
 #' @examples
-#' hello("James")
-#' hello("Amelia", "Es")
+#' hello("Amelia")
+#' hello("Emmanuel", "fR")
+#' hello("Sami", "GE")
+#' hello("Sami", "GE", LangData = data.frame("ge", "Hallo"))
+#' hello(25) |> try()   # Error
 #'
 #' @export
 #'
-hello <- function(who, lang = "EN", LangData = Hello::language) {
-  if (!exists("who", mode = "character") | length(who) > 1) {
-    stop("Please enter a valid namea; see ?hello")
+hello <- function(who, lang = "EN", LangData = language) {
+  if (!is.character(who) || !(length(who) == 1)) {
+    stop("Please enter a valid 'who'; see ?hello")
   }
-
-  LangData <- data.frame(LangData)
-
-  if (ncol(LangData) > 2) {
-    stop("Please enter a valid LangData; see ?hello")
+  if (!is.character(lang) || !(length(lang) == 1)) {
+    stop("Please enter a valid 'lang'; see ?hello")
   }
-
+  if (!is.data.frame(LangData) || !(ncol(LangData) == 2)) {
+    stop("Please enter a valid 'LangData'; see ?hello")
+  }
   colnames(LangData) <- c("code", "hello")
-
-  if ((mode(LangData$code) != "character") | (mode(LangData$hello) != "character")) {
-    stop("Please enter a valid LangData; see ?hello")
+  if (!is.character(LangData$code) || !is.character(LangData$hello)) {
+    stop("Please enter a valid ''LangData'; see ?hello")
   }
-
   llang <- tolower(lang)
-
-  hello <- subset(LangData, LangData$code == llang)[[2]]
-
+  LangData$code <- tolower(LangData$code)
+  hello <- subset(LangData, LangData$code == llang)[1, 2]
   ifelse(
-    length(hello) == 1,
+    !is.na(hello),
     stringr::str_c(hello, ", ", who, "!", sep = ""),
     stringr::str_c("Sorry, ", who, ", ", "your language ", "('", lang, "') ", "is not available!", sep = "")
   ) |> cat()
